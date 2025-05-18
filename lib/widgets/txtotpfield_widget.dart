@@ -4,17 +4,17 @@ import 'package:flutter/services.dart';
 import 'package:todo_advance_app/app.dart';
 import 'package:todo_advance_app/core/constants/colors.dart';
 
-class txtotpfield extends StatefulWidget {
+class Txtotpfield extends StatefulWidget {
   final int length;
   final ValueChanged<String>? onCompleted;
 
-  const txtotpfield({super.key, this.length = 4, this.onCompleted});
+  const Txtotpfield({super.key, this.length = 4, this.onCompleted});
 
   @override
-  State<txtotpfield> createState() => _txtotpfieldState();
+  State<Txtotpfield> createState() => _TxtotpfieldState();
 }
 
-class _txtotpfieldState extends State<txtotpfield> {
+class _TxtotpfieldState extends State<Txtotpfield> {
   late List<TextEditingController> _controllers;
   late List<FocusNode> _focusNodes;
   String _otp = '';

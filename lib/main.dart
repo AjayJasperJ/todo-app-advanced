@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:nercha_worship_app/app.dart';
-import 'package:nercha_worship_app/core/constants/colors.dart';
-import 'package:nercha_worship_app/screens/splash/splash_screen.dart';
 import 'package:todo_advance_app/app.dart';
 import 'package:todo_advance_app/core/constants/colors.dart';
+import 'package:todo_advance_app/screens/home_screen.dart';
 
 void main() {
   runApp(AppEngine());
@@ -21,7 +19,7 @@ class AppEngine extends StatelessWidget {
         scaffoldBackgroundColor: Constantcolors().nercha_white,
         fontFamily: 'general_sans',
       ),
-      home: SplashScreen(),
+      home: HomeScreen(),
     );
   }
 }

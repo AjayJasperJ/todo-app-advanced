@@ -5,12 +5,14 @@ import 'package:todo_advance_app/app.dart';
 import 'package:todo_advance_app/core/constants/colors.dart';
 import 'package:todo_advance_app/widgets/txt_widget.dart';
 
-class txtfield extends StatefulWidget {
+class Txtfield extends StatefulWidget {
   final TextEditingController? controller;
   final String? Function(String?)? validator;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
+  final TextStyle? txtstyle;
   final String? hintText;
+  final int? prefixspacing;
   final FocusNode? focusNode;
   final FocusNode? nextFocusNode;
   final TextInputAction? textInputAction;
@@ -18,11 +20,13 @@ class txtfield extends StatefulWidget {
   final List<TextInputFormatter>? inputformat;
   final TextInputType? keyboardtype;
 
-  const txtfield({
+  const Txtfield({
     super.key,
     this.controller,
     this.validator,
+    this.prefixspacing,
     this.prefixIcon,
+    this.txtstyle,
     this.suffixIcon,
     this.hintText,
     this.focusNode,
@@ -34,10 +38,10 @@ class txtfield extends StatefulWidget {
   });
 
   @override
-  State<txtfield> createState() => _txtfieldState();
+  State<Txtfield> createState() => _TxtfieldState();
 }
 
-class _txtfieldState extends State<txtfield> {
+class _TxtfieldState extends State<Txtfield> {
   final colors = Constantcolors();
   late final TextEditingController _controller;
   late final FocusNode _focusNode;
@@ -87,6 +91,7 @@ class _txtfieldState extends State<txtfield> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TextFormField(
+          style: widget.txtstyle,
           controller: _controller,
           focusNode: _focusNode,
           textInputAction:
@@ -99,28 +104,36 @@ class _txtfieldState extends State<txtfield> {
           inputFormatters: widget.inputformat,
           keyboardType: widget.keyboardtype,
           decoration: InputDecoration(
-            prefixIcon:
-                !(widget.isPrefix ?? false)
-                    ? Container(
-                      margin: EdgeInsets.only(
-                        left: displaysize.height * .025,
-                        right: displaysize.height * .005,
-                      ),
-                      height: displaysize.height * .025,
-                      width: displaysize.height * .025,
-                      child: widget.prefixIcon,
-                    )
-                    : Container(
-                      width: displaysize.height * .13,
-                      child: Center(
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: displaysize.height * .015,
-                          ),
-                          child: widget.prefixIcon,
-                        ),
-                      ),
-                    ),
+            prefixIcon: switch (widget.prefixspacing) {
+              1 => Container(
+                margin: EdgeInsets.only(
+                  left: displaysize.height * .025,
+                  right: displaysize.height * .01,
+                ),
+                height: displaysize.height * .025,
+                width: displaysize.height * .05,
+                child: Center(child: widget.prefixIcon),
+              ),
+              2 => Container(
+                margin: EdgeInsets.only(
+                  left: displaysize.height * .025,
+                  right: displaysize.height * .01,
+                ),
+                height: displaysize.height * .025,
+                width: displaysize.height * .09,
+                child: Center(child: widget.prefixIcon),
+              ),
+              3 => Container(
+                margin: EdgeInsets.only(
+                  left: displaysize.height * .025,
+                  right: displaysize.height * .01,
+                ),
+                height: displaysize.height * .025,
+                width: displaysize.height * .12,
+                child: Center(child: widget.prefixIcon),
+              ),
+              _ => null,
+            },
             suffixIcon: widget.suffixIcon,
             hintText: widget.hintText,
             hintStyle: TextStyle(

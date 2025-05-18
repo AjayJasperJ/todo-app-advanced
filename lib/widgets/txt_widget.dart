@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_advance_app/app.dart';
 
 enum Font {
   bold(FontWeight.w700),
@@ -70,15 +71,39 @@ class Txt extends StatelessWidget {
   }
 }
 
-// Txt(
-//   'Flutter is awesome!',
-//   size: 24,
-//   font: Font.boldItalic,
-//   color: Colors.blue,
-//   decorate: Decorate.underline,
-//   align: TextAlign.center,
-//   max: 2,
-//   clip: TextOverflow.ellipsis,
-//   space: 1.2,
-//   height: 1.5,
-// )
+TextStyle style({
+  Font? font,
+  Decorate? decoration,
+  Color? color,
+  double? size,
+  double? letterSpacing,
+  double? lineHeight,
+}) {
+  return TextStyle(
+    fontSize: size ?? displaysize.height * 0.018,
+    fontWeight: font?.weight ?? Font.regular.weight,
+    fontStyle: font?.style ?? FontStyle.normal,
+    color: color,
+    decoration: decoration?.value ?? Decorate.none.value,
+    letterSpacing: letterSpacing,
+    height: lineHeight,
+  );
+}
+
+TextStyle Txtstyle({
+  Font font = Font.regular,
+  Decorate decoration = Decorate.none,
+  Color? color,
+  double? size,
+  double? letterSpacing,
+  double? lineHeight,
+}) {
+  return style(
+    font: font,
+    decoration: decoration,
+    color: color,
+    size: size,
+    letterSpacing: letterSpacing,
+    lineHeight: lineHeight,
+  );
+}
